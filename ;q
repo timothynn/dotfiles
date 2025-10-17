@@ -28,18 +28,12 @@
     ollama
     gollama
     jan
-    lmstudio
     
     # Terminals
     warp-terminal
 
     # Database
     dolt
-
-    # Office
-    wpsoffice
-
-    vivaldi
   ];
 
   # Enable direnv
