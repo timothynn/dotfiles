@@ -6,5 +6,7 @@
     ./programs
     ./services
     ./system
+    ./security.nix
+    ./performance.nix
   ];
 }
