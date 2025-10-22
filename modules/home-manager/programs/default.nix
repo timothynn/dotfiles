@@ -12,5 +12,6 @@
     ./communication
     ./utilities
     ./keybind-viewer.nix
+    ./ai-tools
   ];
 }
