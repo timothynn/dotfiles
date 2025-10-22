@@ -55,9 +55,6 @@
     trusted-users = [ "root" "tim" ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # System state version
   system.stateVersion = "25.05";
 }

@@ -16,7 +16,12 @@
     direnv
     
     # Languages
-    (python3.withPackages (ps: with ps; [ tkinter ]))
+    (python3.withPackages (ps: with ps; [ 
+      tkinter 
+      jupyter
+      notebook
+      jupyterlab
+    ]))
     nodejs
     
     # Tools

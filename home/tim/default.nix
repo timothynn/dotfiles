@@ -19,7 +19,6 @@
     BROWSER = "firefox";
     TERMINAL = "kitty";
   };
-  nixpkgs.config.allowUnfree = true;
 
   # Enable home manager
   programs.home-manager.enable = true;

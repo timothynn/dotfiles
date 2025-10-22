@@ -34,6 +34,10 @@
         inherit system;
         specialArgs = { inherit inputs outputs; };
         modules = modules ++ [
+          # Global nixpkgs configuration
+          {
+            nixpkgs.config.allowUnfree = true;
+          }
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -50,7 +54,10 @@
       
       # Helper function for generating home configs
       mkHome = modules: home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
         extraSpecialArgs = { inherit inputs outputs; };
         modules = modules;
       };

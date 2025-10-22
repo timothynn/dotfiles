@@ -7,9 +7,6 @@
     R
     rstudio
     
-    # Jupyter ecosystem
-    jupyter
-    
     # Apache tools for big data
     # apache-spark  # Commented - large package, install when needed
     
