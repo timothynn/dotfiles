@@ -1,0 +1,168 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetbrainsMono Nerd Font", "Font Awesome 6 Free";
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(30, 30, 46, 0.9);
+    color: #cdd6f4;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    border-radius: 6px;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces {
+    background: transparent;
+    margin: 2px 4px 2px 2px;
+    padding: 0 5px;
+    border-radius: 6px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background: transparent;
+    color: #7f849c;
+    border-radius: 4px;
+    min-width: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button:hover {
+    background: #45475a;
+    color: #cdd6f4;
+}
+
+#workspaces button.active {
+    background: #89b4fa;
+    color: #1e1e2e;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    background: #f38ba8;
+    color: #1e1e2e;
+    animation: blink 1s linear infinite alternate;
+}
+
+@keyframes blink {
+    to {
+        background: #f9e2af;
+    }
+}
+
+#mode {
+    background: #f9e2af;
+    color: #1e1e2e;
+    padding: 0 10px;
+    margin: 2px 4px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+#clock {
+    background: #74c7ec;
+    color: #1e1e2e;
+    padding: 0 15px;
+    margin: 2px 4px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+#cpu,
+#memory {
+    background: #a6e3a1;
+    color: #1e1e2e;
+    padding: 0 10px;
+    margin: 2px 2px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+#memory {
+    background: #f9e2af;
+}
+
+#battery {
+    background: #fab387;
+    color: #1e1e2e;
+    padding: 0 10px;
+    margin: 2px 2px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+#battery.charging {
+    background: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+    background: #f9e2af;
+    animation: blink 1s linear infinite alternate;
+}
+
+#battery.critical:not(.charging) {
+    background: #f38ba8;
+    animation: blink 0.5s linear infinite alternate;
+}
+
+#network {
+    background: #cba6f7;
+    color: #1e1e2e;
+    padding: 0 10px;
+    margin: 2px 2px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+#network.disconnected {
+    background: #f38ba8;
+}
+
+#pulseaudio {
+    background: #f5c2e7;
+    color: #1e1e2e;
+    padding: 0 10px;
+    margin: 2px 2px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+#pulseaudio.muted {
+    background: #6c7086;
+    color: #cdd6f4;
+}
+
+#tray {
+    background: #45475a;
+    padding: 0 10px;
+    margin: 2px 2px 2px 4px;
+    border-radius: 6px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #f38ba8;
+}
+
+tooltip {
+    background: #1e1e2e;
+    border-radius: 6px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #89b4fa;
+}
+
+tooltip label {
+    color: #cdd6f4;
+}

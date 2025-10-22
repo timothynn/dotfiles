@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # Stylix theming configuration - Catppuccin Mocha
+  # Stylix theming configuration
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
@@ -16,13 +16,13 @@
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Classic";
-      size = 20;  # Adjusted for 1366x768 screen
+      size = 18;
     };
 
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font";
+        name = "JetbrainsMono Nerd Font";
       };
       
       serif = {
@@ -41,9 +41,9 @@
       };
       
       sizes = {
-        applications = 10;  # Smaller for laptop screen
-        desktop = 10;
-        popups = 10;
+        applications = 11;
+        desktop = 11;
+        popups = 11;
         terminal = 11;
       };
     };
@@ -85,7 +85,6 @@
     # Theme tools
     libsForQt5.qt5ct
     qt6ct
-    libsForQt5.qtstyleplugin-kvantum
-    qt6Packages.qtstyleplugin-kvantum
+    plasma5Packages.qtstyleplugin-kvantum
   ];
 }

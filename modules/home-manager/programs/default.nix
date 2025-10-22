@@ -8,8 +8,6 @@
     ./browser
     ./media
     ./development
-    ./data-science
-    ./backend
     ./productivity
     ./communication
     ./utilities
