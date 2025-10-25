@@ -31,6 +31,9 @@
       ".." = "cd ..";
       "..." = "cd ../..";
       "....." = "cd ../../../..";
+      
+      # Claude Code alias
+      claude-code = "claude";
     };
     
     oh-my-zsh = {
@@ -49,6 +52,9 @@
 
     # Additional configuration
     initContent = ''
+      # Add npm global bin to PATH
+      export PATH="$HOME/.local/npm-global/bin:$PATH"
+
       # Custom functions
       mkcd() {
         mkdir -p "$1" && cd "$1"

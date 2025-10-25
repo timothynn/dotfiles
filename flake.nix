@@ -56,10 +56,21 @@
       mkHome = modules: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
-          config.allowUnfree = true;
+          config = {
+            allowUnfree = true;
+            allowUnfreePredicate = pkg: true;
+          };
         };
         extraSpecialArgs = { inherit inputs outputs; };
-        modules = modules;
+        modules = modules ++ [
+          # Ensure nixpkgs config is available in home manager modules
+          {
+            nixpkgs.config = {
+              allowUnfree = true;
+              allowUnfreePredicate = pkg: true;
+            };
+          }
+        ];
       };
     in
     {

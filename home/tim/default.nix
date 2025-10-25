@@ -6,6 +6,14 @@
     ../../modules/home-manager
   ];
 
+  # Configure nixpkgs
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = pkg: true;
+    };
+  };
+
   # Basic home manager settings
   home = {
     username = "tim";

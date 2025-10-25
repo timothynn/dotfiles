@@ -36,7 +36,7 @@
     lmstudio
     
     # Terminals
-    warp-terminal
+    # warp-terminal  # Temporarily disabled - takes very long to build
 
     # Database
     dolt
