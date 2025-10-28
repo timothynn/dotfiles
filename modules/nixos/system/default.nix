@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./security.nix
+    ./maintenance.nix
+  ];
+
   # System-wide configuration that doesn't fit elsewhere
   
   # Performance optimizations

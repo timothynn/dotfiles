@@ -15,5 +15,6 @@
     ./utilities
     ./keybind-viewer.nix
     ./ai-tools
+    ./network
   ];
 }

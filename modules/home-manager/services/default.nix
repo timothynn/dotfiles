@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+
+  imports = [
+    ./backup.nix
+  ];
   # Home manager services
   services = {
     # Keyring

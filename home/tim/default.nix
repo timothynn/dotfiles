@@ -1,18 +1,10 @@
-{ inputs, outputs, config, pkgs, ... }:
+{ inputs, outputs, config, pkgs, lib, ... }:
 
 {
   imports = [
     # Import home manager modules
     ../../modules/home-manager
   ];
-
-  # Configure nixpkgs
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = pkg: true;
-    };
-  };
 
   # Basic home manager settings
   home = {
@@ -27,6 +19,10 @@
     BROWSER = "firefox";
     TERMINAL = "kitty";
   };
+
+  # Disable nixpkgs config since useGlobalPkgs is enabled
+  # The system-level config will be used instead
+  # nixpkgs.config = lib.mkForce {};
 
   # Enable home manager
   programs.home-manager.enable = true;

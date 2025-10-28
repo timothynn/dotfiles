@@ -79,3 +79,14 @@ clean:
 	@echo "Cleaning old generations..."
 	@sudo nix-collect-garbage -d
 	@home-manager expire-generations "-7 days"
+
+# System health check
+health:
+	@./scripts/system-monitor.sh
+
+# rollback commands
+rollback-system:
+	@./scripts/rollback.sh system --list
+
+rollback-home:
+	@./scripts/rollback home --list
