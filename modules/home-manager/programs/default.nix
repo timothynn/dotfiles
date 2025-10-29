@@ -12,7 +12,7 @@
     ./backend
     ./productivity
     ./communication
-    # ./utilities
+    ./utilities
     ./keybind-viewer.nix
     ./ai-tools
     ./network
