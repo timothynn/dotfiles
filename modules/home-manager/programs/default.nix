@@ -16,5 +16,6 @@
     ./keybind-viewer.nix
     ./ai-tools
     ./network
+    ./rofi
   ];
 }

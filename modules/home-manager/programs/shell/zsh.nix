@@ -7,6 +7,9 @@
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
     
+    # Fix cache directory permissions
+    dotDir = ".config/zsh";
+    
     shellAliases = {
       # System management
       ls = "eza";
@@ -16,8 +19,8 @@
       cat = "bat";
       
       # NixOS shortcuts
-      hms = "home-manager switch --flake .";
-      nrs = "sudo nixos-rebuild switch --flake .";
+      hms = "home-manager switch --flake ~/.dotfiles";
+      nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles";
       
       # Git shortcuts
       g = "git";
@@ -31,9 +34,6 @@
       ".." = "cd ..";
       "..." = "cd ../..";
       "....." = "cd ../../../..";
-      
-      # Claude Code alias
-      claude-code = "claude";
     };
     
     oh-my-zsh = {
@@ -48,13 +48,16 @@
         "kubectl"
       ];
       theme = "robbyrussell";
+      # Fix cache permissions
+      custom = "$HOME/.config/zsh/oh-my-zsh-custom";
     };
 
     # Additional configuration
-    initContent = ''
-      # Add npm global bin to PATH
-      export PATH="$HOME/.local/npm-global/bin:$PATH"
-
+    initExtra = ''
+      # Fix Oh-My-Zsh cache directory
+      export ZSH_CACHE_DIR="$HOME/.cache/zsh"
+      mkdir -p "$ZSH_CACHE_DIR/completions"
+      
       # Custom functions
       mkcd() {
         mkdir -p "$1" && cd "$1"
@@ -68,6 +71,26 @@
       setopt HIST_IGNORE_DUPS
       setopt HIST_IGNORE_ALL_DUPS
       setopt HIST_IGNORE_SPACE
+      
+      # Fix permissions on first run
+      if [[ ! -w "$HOME/.cache/zsh" ]]; then
+        mkdir -p "$HOME/.cache/zsh/completions"
+        chmod -R 755 "$HOME/.cache/zsh"
+      fi
     '';
+    
+    history = {
+      size = 10000;
+      path = "${config.xdg.dataHome}/zsh/history";
+      ignoreDups = true;
+      ignoreSpace = true;
+      share = true;
+    };
   };
+  
+  # Ensure cache directories exist with correct permissions
+  home.activation.fixZshCache = config.lib.dag.entryAfter ["writeBoundary"] ''
+    mkdir -p $HOME/.cache/zsh/completions
+    chmod -R 755 $HOME/.cache/zsh
+  '';
 }
