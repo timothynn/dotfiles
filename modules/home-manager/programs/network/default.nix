@@ -12,9 +12,10 @@
     wireshark        # Network protocol analyzer
     
     # DNS tools
-    dig              # DNS lookup
-    bind             # DNS utilities (includes dig, nslookup)
-    dogdns           # Modern DNS client
+    dog
+    # dig              # DNS lookup
+    # bind             # DNS utilities (includes dig, nslookup)
+    # dogdns           # Modern DNS client
     
     # HTTP tools
     curl

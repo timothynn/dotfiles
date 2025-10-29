@@ -44,8 +44,7 @@
     
     # Kubernetes tools
     kubectl
-    kubectx
-    kubens
+    kubectx  # Includes both kubectx and kubens
     k9s
     helm
     kustomize
