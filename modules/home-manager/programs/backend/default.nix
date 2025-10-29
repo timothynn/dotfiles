@@ -45,6 +45,7 @@
     # Kubernetes tools
     kubectl
     kubectx
+    kubens
     k9s
     helm
     kustomize
@@ -58,9 +59,8 @@
     netcat
     nmap
     
-    # DNS tools
-    dig
-    dog
+    # DNS tools (using dog - modern dig alternative)
+    dog  # Modern DNS lookup tool
     
     # TLS/SSL tools
     openssl

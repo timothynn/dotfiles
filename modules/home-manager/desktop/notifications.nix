@@ -6,10 +6,10 @@
     enable = true;
     
     # Appearance
-    backgroundColor = "#1e1e2e";
-    textColor = "#cdd6f4";
-    borderColor = "#89b4fa";
-    progressColor = "over #313244";
+    # backgroundColor = "#1e1e2e";
+    # textColor = "#cdd6f4";
+    # borderColor = "#89b4fa";
+    # progressColor = "over #313244";
     
     # Dimensions
     width = 400;
@@ -26,13 +26,13 @@
     
     # Behavior
     defaultTimeout = 5000;  # 5 seconds
-    ignoreTimeout = false;
+    # ignoreTimeout = false;
     
     # Position (top-right)
     anchor = "top-right";
     
     # Font
-    font = "JetBrains Mono 11";
+    # font = "JetBrains Mono 11";
     
     # Grouping
     groupBy = "app-name";
