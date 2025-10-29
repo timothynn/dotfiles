@@ -4,7 +4,6 @@
   # Backend Development Tools
   home.packages = with pkgs; [
     # API Development & Testing
-    postman
     insomnia
     bruno
     httpie

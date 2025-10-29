@@ -53,7 +53,6 @@
     # Other utilities
     qbittorrent
     # tradingview  # Temporarily disabled to test other packages
-    rofi
     libnotify       # For notify-send command
   ];
 }

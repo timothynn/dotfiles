@@ -54,6 +54,7 @@
       btop.enable = true;
       bat.enable = true;
       fzf.enable = true;
+      rofi.enable = false;
     };
   };
 
