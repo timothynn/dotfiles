@@ -10,22 +10,22 @@
     # textColor = "#cdd6f4";
     # borderColor = "#89b4fa";
     # progressColor = "over #313244";
-    
+    settings = { 
     # Dimensions
     width = 400;
     height = 150;
     margin = "10";
     padding = "15";
-    borderSize = 2;
-    borderRadius = 8;
+    border-size = 2;
+    border-radius = 8;
     
     # Icons
     icons = true;
-    maxIconSize = 48;
-    iconPath = "${pkgs.catppuccin-papirus-folders}/share/icons/Papirus-Dark";
+    max-icon-size = 48;
+    icon-path = "${pkgs.catppuccin-papirus-folders}/share/icons/Papirus-Dark";
     
     # Behavior
-    defaultTimeout = 5000;  # 5 seconds
+    default-timeout = 5000;  # 5 seconds
     # ignoreTimeout = false;
     
     # Position (top-right)
@@ -35,11 +35,11 @@
     # font = "JetBrains Mono 11";
     
     # Grouping
-    groupBy = "app-name";
+    group-by = "app-name";
     
     # Multiple monitors
     output = "";  # Show on focused monitor
-    
+    };
     # Extra config
     extraConfig = ''
       [urgency=low]

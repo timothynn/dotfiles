@@ -41,7 +41,7 @@
         # Security settings
         extraOptions = {
           AddKeysToAgent = "yes";
-          UseKeychain = "yes";
+          UseKeychain = "no";
         };
       };
       
