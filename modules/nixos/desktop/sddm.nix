@@ -8,7 +8,7 @@ let
       owner = "MarianArlt";
       repo = "sddm-sugar-dark";
       rev = "v1.2";
-      sha256 = "sha256-p2d7W6AB/vzH5p5GPJH8RobBh0wCgpJE3pRW3xhANFk=";
+      sha256 = "sha256-C3qB9hFUeuT5+Dos2zFj5SyQegnghpoFV9wHvE9VoD8=";
     };
     installPhase = ''
       mkdir -p $out/share/sddm/themes

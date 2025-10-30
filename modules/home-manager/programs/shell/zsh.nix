@@ -8,7 +8,7 @@
     autosuggestion.enable = true;
     
     # Fix cache directory permissions
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     
     shellAliases = {
       # System management
@@ -49,11 +49,11 @@
       ];
       theme = "robbyrussell";
       # Fix cache permissions
-      custom = "$HOME/.config/zsh/oh-my-zsh-custom";
+      custom = "${config.xdg.configHome}/zsh/oh-my-zsh-custom";
     };
 
     # Additional configuration
-    initExtra = ''
+    initContent = ''
       # Fix Oh-My-Zsh cache directory
       export ZSH_CACHE_DIR="$HOME/.cache/zsh"
       mkdir -p "$ZSH_CACHE_DIR/completions"

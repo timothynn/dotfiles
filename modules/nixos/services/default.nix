@@ -13,5 +13,8 @@
     
     # Thumbnails
     tumbler.enable = true;
+    
+    # Tailscale 
+    tailscale.enable = true;
   };
 }

@@ -31,6 +31,7 @@
   # SSH configuration
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;  # Disable default config as recommended
     
     # SSH config
     matchBlocks = {
