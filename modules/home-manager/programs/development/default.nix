@@ -42,7 +42,7 @@
     dolt
 
     # Office
-    brave-bin
+    brave
   ];
 
   # Enable direnv

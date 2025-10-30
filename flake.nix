@@ -42,7 +42,7 @@
         modules = modules ++ [
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
+            home-manager.useGlobalPkgs = false;  # Temporarily disable to fix nixpkgs config conflict
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = { inherit inputs outputs; };

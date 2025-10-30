@@ -20,8 +20,8 @@
     TERMINAL = "kitty";
   };
 
-  # CRITICAL FIX: Disable nixpkgs config when useGlobalPkgs is enabled
-  nixpkgs.config = lib.mkForce {};
+  # Allow unfree packages since useGlobalPkgs is disabled
+  nixpkgs.config.allowUnfree = true;
 
   # Enable home manager
   programs.home-manager.enable = true;
