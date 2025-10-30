@@ -24,35 +24,35 @@ in
     wayland.enable = true;
     
     # Use Sugar Dark theme
-    theme = "sugar-dark";
+    theme = "catppuccin-mocha";
     
-    settings = {
-      Theme = {
-        Current = "sugar-dark";
-        ThemeDir = "/run/current-system/sw/share/sddm/themes";
-        CursorTheme = "Bibata-Modern-Classic";
-      };
-      
-      General = {
-        # Display settings
-        DisplayServer = "wayland";
-        GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
-        
-        # User settings
-        InputMethod = "";
-      };
-      
-      Users = {
-        MaximumUid = 60000;
-        MinimumUid = 1000;
-        HideUsers = "";
-        HideShells = "/bin/false,/usr/bin/nologin";
-      };
-      
-      Wayland = {
-        CompositorCommand = "kwin_wayland --no-global-shortcuts --no-kactivities --no-lockscreen --locale1";
-      };
-    };
+    # settings = {
+    #   Theme = {
+    #     Current = "sugar-dark";
+    #     ThemeDir = "/run/current-system/sw/share/sddm/themes";
+    #     CursorTheme = "Bibata-Modern-Classic";
+    #   };
+    #   
+    #   General = {
+    #     # Display settings
+    #     DisplayServer = "wayland";
+    #     GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
+    #     
+    #     # User settings
+    #     InputMethod = "";
+    #   };
+    #   
+    #   Users = {
+    #     MaximumUid = 60000;
+    #     MinimumUid = 1000;
+    #     HideUsers = "";
+    #     HideShells = "/bin/false,/usr/bin/nologin";
+    #   };
+    #   
+    #   Wayland = {
+    #     CompositorCommand = "kwin_wayland --no-global-shortcuts --no-kactivities --no-lockscreen --locale1";
+    #   };
+    # };
   };
 
   # SDDM dependencies
@@ -62,11 +62,11 @@ in
     libsForQt5.qt5.qtsvg
     libsForQt5.qt5.qtquickcontrols2
     
-    # Theme
+    # Current theme
     sugar-dark-sddm
+    sddm-sugar-dark
     
-    # Alternative modern themes (comment out sugar-dark above and uncomment one below)
-    # Catppuccin (your current theme)
+    # Alternative Catppuccin theme (uncomment to switch themes)
     (catppuccin-sddm.override {
       flavor = "mocha";
       font = "JetbrainsMono Nerd Font";

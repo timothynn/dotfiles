@@ -37,7 +37,7 @@ windowrulev2 = size 800 600, class:^(pavucontrol)$
 windowrulev2 = size 1000 700, class:^(thunar)$, title:^(File Operation Progress)$
 
 # Workspace assignments
-windowrulev2 = workspace 1 silent, class:^(kitty)$
+# windowrulev2 = workspace 1 silent, class:^(kitty)$
 windowrulev2 = workspace 2 silent, class:^(firefox)$
 windowrulev2 = workspace 2 silent, class:^(Google-chrome)$
 windowrulev2 = workspace 3 silent, class:^(Code)$
@@ -52,7 +52,7 @@ windowrulev2 = workspace 8 silent, class:^(Thunderbird)$
 windowrulev2 = workspace 9 silent, class:^(obs)$
 
 # Opacity rules
-windowrulev2 = opacity 0.95 0.85, class:^(kitty)$
+# windowrulev2 = opacity 0.95 0.85, class:^(kitty)$
 windowrulev2 = opacity 1.0 override 1.0 override, class:^(firefox)$
 windowrulev2 = opacity 1.0 override 1.0 override, class:^(Google-chrome)$
 windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*YouTube.*)$
