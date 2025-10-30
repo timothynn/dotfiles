@@ -30,9 +30,9 @@
     
     # AI tools
     github-copilot-cli
+    # gemini  # Package not found in nixpkgs
     ollama
     gollama
-    jan
     lmstudio
     
     # Terminals
@@ -42,9 +42,7 @@
     dolt
 
     # Office
-    wpsoffice
-
-    vivaldi
+    brave-bin
   ];
 
   # Enable direnv

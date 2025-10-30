@@ -185,9 +185,9 @@
   
   # Rofi keybindings in Hyprland config
   # Add to your hyprland.conf:
-  bind = $mainMod, R, exec, rofi -show drun
-  bind = $mainMod, period, exec, rofi -show emoji
-  bind = $mainMod SHIFT, R, exec, rofi -show run
-  bind = $mainMod, E, exec, rofi -show filebrowser
-  bind = $mainMod, C, exec, rofi -show calc -no-show-match -no-sort
+  # bind = $mainMod, R, exec, rofi -show drun
+  # bind = $mainMod, period, exec, rofi -show emoji
+  # bind = $mainMod SHIFT, R, exec, rofi -show run
+  # bind = $mainMod, E, exec, rofi -show filebrowser
+  # bind = $mainMod, C, exec, rofi -show calc -no-show-match -no-sort
 }

@@ -20,9 +20,8 @@
     TERMINAL = "kitty";
   };
 
-  # Disable nixpkgs config since useGlobalPkgs is enabled
-  # The system-level config will be used instead
-  # nixpkgs.config = lib.mkForce {};
+  # CRITICAL FIX: Disable nixpkgs config when useGlobalPkgs is enabled
+  nixpkgs.config = lib.mkForce {};
 
   # Enable home manager
   programs.home-manager.enable = true;

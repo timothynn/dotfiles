@@ -11,6 +11,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
+    # Hyprland
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    
     # Stylix for theming
     stylix = {
       url = "github:nix-community/stylix";
@@ -22,9 +25,12 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    # NUR - Nix User Repository (for Firefox extensions)
+    nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, stylix, nixvim, nur, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -34,10 +40,6 @@
         inherit system;
         specialArgs = { inherit inputs outputs; };
         modules = modules ++ [
-          # Global nixpkgs configuration
-          {
-            nixpkgs.config.allowUnfree = true;
-          }
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -47,6 +49,8 @@
             home-manager.sharedModules = [
               nixvim.homeModules.nixvim
               stylix.homeModules.stylix
+              # Add NUR overlay for Firefox extensions
+              { nixpkgs.overlays = [ nur.overlays.default ]; }
             ];
           }
         ];
@@ -56,20 +60,13 @@
       mkHome = modules: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
-          config = {
-            allowUnfree = true;
-            allowUnfreePredicate = pkg: true;
-          };
+          overlays = [ nur.overlays.default ];  # Add NUR overlay
+          config.allowUnfree = true;
         };
         extraSpecialArgs = { inherit inputs outputs; };
         modules = modules ++ [
-          # Ensure nixpkgs config is available in home manager modules
-          {
-            nixpkgs.config = {
-              allowUnfree = true;
-              allowUnfreePredicate = pkg: true;
-            };
-          }
+          nixvim.homeModules.nixvim
+          stylix.homeModules.stylix
         ];
       };
     in
@@ -80,8 +77,7 @@
         nixos = mkSystem [
           ./hosts/nixos
           stylix.nixosModules.stylix
-          # Using Hyprland from nixpkgs instead of flake input
-          # This makes updates much faster
+          hyprland.nixosModules.default
         ];
       };
 
@@ -89,8 +85,6 @@
       homeConfigurations = {
         "tim@nixos" = mkHome [
           ./home/tim
-          stylix.homeModules.stylix
-          nixvim.homeModules.nixvim
         ];
       };
 
@@ -98,6 +92,7 @@
       devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
         buildInputs = with nixpkgs.legacyPackages.${system}; [
           git
+          nixfmt
         ];
       };
     };
