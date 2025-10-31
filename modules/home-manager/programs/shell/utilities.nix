@@ -48,7 +48,7 @@
   home.packages = with pkgs; [
     tldr        # Better man pages
     bottom      # Better top
-    du-dust     # Better du
+    dust        # Better du
     procs       # Better ps
     choose      # Better cut/awk
     sd          # Better sed

@@ -36,7 +36,7 @@
       };
       
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
       
@@ -85,7 +85,7 @@
     
     # Theme tools
     libsForQt5.qt5ct
-    qt6ct
+    qt6Packages.qt6ct
     plasma5Packages.qtstyleplugin-kvantum
   ];
 }
