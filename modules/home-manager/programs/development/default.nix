@@ -1,50 +1,55 @@
 { config, pkgs, ... }:
 
+let
+  packages = import ../../../common/packages.nix { inherit pkgs; };
+in
 {
   imports = [
     ./git.nix
-    # ./npm-packages.nix  # Uncomment to use npm-managed Copilot CLI
   ];
 
   # Development tools
-  home.packages = with pkgs; [
-    # Version control
-    gh
-    lazygit
-    
-    # Development environments
-    devenv
-    direnv
-    
-    # Languages
-    (python3.withPackages (ps: with ps; [ 
-      tkinter 
-      jupyter
-      notebook
-      jupyterlab
-    ]))
-    nodejs
-    
-    # Tools
-    postman
-    lazydocker
-    
-    # AI tools
-    # github-copilot-cli  # Now installed via npm globally
-    # gemini  # Package not found in nixpkgs
-    ollama
-    gollama
-    lmstudio
-    
-    # Terminals
-    # warp-terminal  # Temporarily disabled - takes very long to build
+  home.packages =
+    packages.vcs
+    ++ packages.devUtils
+    ++ (with pkgs; [
+      # Languages
+      (python3.withPackages (
+        ps: with ps; [
+          tkinter
+          jupyter
+          notebook
+          jupyterlab
+        ]
+      ))
+      nodejs
 
-    # Database
-    dolt
+      # .NET SDK
+      dotnet-sdk
+      dotnet-aspnetcore
 
-    # Office
-    brave
-  ];
+      # Java (required for Android development)
+      jdk
+
+      # Android SDK and tools
+      android-tools
+      android-studio
+
+      # Tools
+      postman
+      lazydocker
+
+      # General development utilities (not in packages.nix yet)
+      unzip
+      which
+      file
+
+      # For emulation
+      qemu
+
+      # Office
+      brave
+    ]);
 
   # Enable direnv
   programs.direnv = {

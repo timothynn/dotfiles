@@ -6,10 +6,10 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
-    
+
     # Fix cache directory permissions
     dotDir = "${config.xdg.configHome}/zsh";
-    
+
     shellAliases = {
       # System management
       ls = "eza";
@@ -17,11 +17,11 @@
       la = "eza -a";
       tree = "eza --tree";
       cat = "bat";
-      
+
       # NixOS shortcuts
       hms = "home-manager switch --flake ~/.dotfiles";
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles";
-      
+
       # Git shortcuts
       g = "git";
       gs = "git status";
@@ -29,22 +29,19 @@
       gc = "git commit";
       gp = "git push";
       gl = "git log --oneline";
-      
-      # Directory navigation
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      "....." = "cd ../../../..";
+
+      # Additional aliases are in modules/common/aliases.nix
     };
-    
+
     oh-my-zsh = {
       enable = true;
-      plugins = [ 
-        "sudo" 
-        "git" 
-        "docker" 
-        "docker-compose" 
-        "aliases" 
-        "gh" 
+      plugins = [
+        "sudo"
+        "git"
+        "docker"
+        "docker-compose"
+        "aliases"
+        "gh"
         "kubectl"
       ];
       theme = "robbyrussell";
@@ -57,7 +54,7 @@
       # Fix Oh-My-Zsh cache directory
       export ZSH_CACHE_DIR="$HOME/.cache/zsh"
       mkdir -p "$ZSH_CACHE_DIR/completions"
-      
+
       # Custom functions
       mkcd() {
         mkdir -p "$1" && cd "$1"
@@ -71,14 +68,14 @@
       setopt HIST_IGNORE_DUPS
       setopt HIST_IGNORE_ALL_DUPS
       setopt HIST_IGNORE_SPACE
-      
+
       # Fix permissions on first run
       if [[ ! -w "$HOME/.cache/zsh" ]]; then
         mkdir -p "$HOME/.cache/zsh/completions"
         chmod -R 755 "$HOME/.cache/zsh"
       fi
     '';
-    
+
     history = {
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
@@ -87,9 +84,9 @@
       share = true;
     };
   };
-  
+
   # Ensure cache directories exist with correct permissions
-  home.activation.fixZshCache = config.lib.dag.entryAfter ["writeBoundary"] ''
+  home.activation.fixZshCache = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p $HOME/.cache/zsh/completions
     chmod -R 755 $HOME/.cache/zsh
   '';

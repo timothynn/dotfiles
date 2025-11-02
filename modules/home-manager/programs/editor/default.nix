@@ -10,5 +10,6 @@
     helix
     emacs
     vscode
+    code-cursor
   ];
 }

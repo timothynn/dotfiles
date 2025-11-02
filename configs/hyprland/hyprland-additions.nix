@@ -84,13 +84,13 @@ exec-once = wl-paste --type text --watch cliphist store
 exec-once = wl-paste --type image --watch cliphist store
 
 # Clipboard keybind
-bind = $mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy
+bind = $mainMod, C, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy
 
 #####################
 ### COLOR PICKER ###
 #####################
 
-bind = $mainMod SHIFT, C, exec, hyprpicker -a
+bind = $mainMod ALT, C, exec, hyprpicker -a
 
 ########################
 ### SCREEN RECORDING ###
@@ -143,7 +143,7 @@ bind = $mainMod SHIFT, Tab, changegroupactive, b
 ######################
 
 # Lock screen
-bind = $mainMod, L, exec, hyprlock
+bind = $mainMod, Escape, exec, hyprlock
 
 # Logout menu
 bind = $mainMod SHIFT, E, exec, wlogout

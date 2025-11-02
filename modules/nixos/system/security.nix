@@ -8,9 +8,9 @@
     # Allow specific ports
     allowedTCPPorts = [
       5432  # PostgreSQL
-      # 22    # SSH (if needed)
-      # 80    # HTTP (if needed)
-      # 443   # HTTPS (if needed)
+      22    # SSH (if needed)
+      80    # HTTP (if needed)
+      443   # HTTPS (if needed)
     ];
     
     allowedUDPPorts = [

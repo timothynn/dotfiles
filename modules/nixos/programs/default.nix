@@ -6,20 +6,13 @@
     ./containers.nix
   ];
 
-  # Core system packages
+  # Core system packages (system-critical only)
   environment.systemPackages = with pkgs; [
-    # System tools
-    neovim
-    git
-    wget
-    curl
-    
-    # File managers
-    kdePackages.dolphin
-    xfce.thunar
-    xfce.thunar-volman
-    
-    # Security
+    # System essentials
+    neovim # System editor
+    wget # System downloader
+
+    # Security (system-level)
     polkit
     polkit_gnome
     libsecret
