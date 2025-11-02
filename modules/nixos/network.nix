@@ -3,35 +3,22 @@
 {
   # Networking configuration
   networking = {
-    # Firewall settings
-    firewall = {
-      enable = false;
+    # Firewall settings are configured in modules/nixos/system/security.nix
+    # Additional firewall ports for email services
+    firewall.allowedTCPPorts = [
+      # SMTP
+      25    # SMTP
+      587   # SMTP with STARTTLS
+      465   # SMTPS
       
-      # Allow common email ports
-      allowedTCPPorts = [
-        # SMTP
-        25    # SMTP
-        587   # SMTP with STARTTLS
-        465   # SMTPS
-        
-        # IMAP
-        143   # IMAP
-        993   # IMAPS
-        
-        # POP3
-        110   # POP3
-        995   # POP3S
-      ];
+      # IMAP
+      143   # IMAP
+      993   # IMAPS
       
-      # Allow UDP for DNS
-      allowedUDPPorts = [ 53 ];
-      
-      # Trusted interfaces (if using VPN)
-      trustedInterfaces = [ "lo" ];
-      
-      # Log refused connections for debugging
-      logRefusedConnections = true;
-    };
+      # POP3
+      110   # POP3
+      995   # POP3S
+    ];
     
     # DNS configuration - helps with email fetching
     nameservers = [ 

@@ -14,8 +14,11 @@
     ];
     
     allowedUDPPorts = [
-      # Add UDP ports if needed
+      53  # DNS
     ];
+    
+    # Trusted interfaces (if using VPN)
+    trustedInterfaces = [ "lo" ];
     
     # Log refused connections
     logRefusedConnections = true;
