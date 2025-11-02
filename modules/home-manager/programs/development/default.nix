@@ -3,6 +3,7 @@
 {
   imports = [
     ./git.nix
+    # ./npm-packages.nix  # Uncomment to use npm-managed Copilot CLI
   ];
 
   # Development tools
@@ -29,7 +30,7 @@
     lazydocker
     
     # AI tools
-    github-copilot-cli
+    # github-copilot-cli  # Now installed via npm globally
     # gemini  # Package not found in nixpkgs
     ollama
     gollama

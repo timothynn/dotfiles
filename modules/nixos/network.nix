@@ -5,7 +5,7 @@
   networking = {
     # Firewall settings
     firewall = {
-      enable = true;
+      enable = false;
       
       # Allow common email ports
       allowedTCPPorts = [
