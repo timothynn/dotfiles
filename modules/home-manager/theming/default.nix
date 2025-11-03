@@ -14,8 +14,8 @@
     polarity = "dark";
 
     cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
+      package = pkgs.catppuccin-cursors.mochaBlue;
+      name = "Catppuccin-Mocha-Blue";
       size = 18;
     };
 

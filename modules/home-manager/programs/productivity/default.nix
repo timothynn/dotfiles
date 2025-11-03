@@ -14,7 +14,8 @@
     # mailspring moved to communication/default.nix with keyring wrapper
     aerc
     
-    # Password manager
+    # Password managers
     bitwarden-desktop
+    keepassxc
   ];
 }

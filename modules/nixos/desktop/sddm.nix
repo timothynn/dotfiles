@@ -1,21 +1,21 @@
 { config, pkgs, ... }:
 
-let
-  # Sugar Dark SDDM theme - modern, minimal, beautiful
-  sugar-dark-sddm = pkgs.stdenv.mkDerivation {
-    name = "sddm-sugar-dark-theme";
-    src = pkgs.fetchFromGitHub {
-      owner = "MarianArlt";
-      repo = "sddm-sugar-dark";
-      rev = "v1.2";
-      sha256 = "sha256-C3qB9hFUeuT5+Dos2zFj5SyQegnghpoFV9wHvE9VoD8=";
-    };
-    installPhase = ''
-      mkdir -p $out/share/sddm/themes
-      cp -r $src $out/share/sddm/themes/sugar-dark
-    '';
-  };
-in
+# let
+#   # Sugar Dark SDDM theme - modern, minimal, beautiful
+#   sugar-dark-sddm = pkgs.stdenv.mkDerivation {
+#     name = "sddm-sugar-dark-theme";
+#     src = pkgs.fetchFromGitHub {
+#       owner = "MarianArlt";
+#       repo = "sddm-sugar-dark";
+#       rev = "v1.2";
+#       sha256 = "sha256-C3qB9hFUeuT5+Dos2zFj5SyQegnghpoFV9wHvE9VoD8=";
+#     };
+#     installPhase = ''
+#       mkdir -p $out/share/sddm/themes
+#       cp -r $src $out/share/sddm/themes/sugar-dark
+#     '';
+#   };
+# in
 {
   # Display manager
   services.displayManager.sddm = {
@@ -23,8 +23,8 @@ in
     package = pkgs.kdePackages.sddm;
     wayland.enable = true;
     
-    # Use Sugar Dark theme
-    theme = "catppuccin-mocha";
+    # Use Catppuccin theme (theme name includes accent color)
+    theme = "catppuccin-mocha-blue";
     
     # settings = {
     #   Theme = {
@@ -59,30 +59,30 @@ in
   environment.systemPackages = with pkgs; [
     # Qt graphics
     libsForQt5.qt5.qtgraphicaleffects
-    libsForQt5.qt5.qtsvg
-    libsForQt5.qt5.qtquickcontrols2
+    # libsForQt5.qt5.qtsvg
+    # libsForQt5.qt5.qtquickcontrols2
     
     # Current theme
-    sugar-dark-sddm
-    sddm-sugar-dark
+    # sugar-dark-sddm
+    # sddm-sugar-dark
     
-    # Alternative Catppuccin theme (uncomment to switch themes)
+    # Alternative Catppuccin theme
     (catppuccin-sddm.override {
       flavor = "mocha";
       font = "JetbrainsMono Nerd Font";
-      fontSize = "10";
-      loginBackground = true;
+      fontSize = "11";
       background = "${pkgs.fetchurl {
         url = "https://www.pixelstalk.net/wp-content/uploads/2025/05/A-dense-forest-with-towering-evergreens-and-a-glowing-mist-rising-from-the-ground.webp";
         hash = "sha256-e8RDn46vsP4b/kLAmYXKgBL12soOXJxAqpRvSruqbXA=";
       }}";
+      loginBackground = true;
     })
   ];
   
   # Cursor theme for SDDM
   environment.variables = {
     # Set cursor theme
-    XCURSOR_THEME = "Bibata-Modern-Classic";
+    XCURSOR_THEME = "Catppuccin-Mocha-Blue";
     XCURSOR_SIZE = "18";
   };
 }

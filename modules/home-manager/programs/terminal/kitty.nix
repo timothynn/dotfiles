@@ -35,7 +35,7 @@
       tab_powerline_style = "slanted";
       
       # Font (will be overridden by stylix)
-      font_size = 11;
+      font_size = 10;
       
       # Shell integration - disable auto-launch of terminal multiplexers
       shell_integration = "no-cursor";

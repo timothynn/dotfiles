@@ -9,7 +9,7 @@
   services = {
     # Keyring
     gnome-keyring = {
-      enable = true;
+      enable = false;
       components = [ "secrets" "ssh" "pkcs11" ];
     };
     

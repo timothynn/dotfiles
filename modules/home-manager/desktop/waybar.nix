@@ -13,33 +13,33 @@
       layer = "top";
       position = "top";
       height = 30;
-      spacing = 4;
-      margin-top = 8;
+      spacing = 3;
+      margin-top = 5;
       margin-left = 8;
       margin-right = 8;
       modules-left = ["hyprland/workspaces" "hyprland/mode"];
       modules-center = ["clock"];
       modules-right = ["pulseaudio" "network" "cpu" "memory" "battery" "tray"];
+"hyprland/workspaces" = {
+  format = "{icon}";
+  format-icons = {
+    "1" = "";
+    "2" = "";
+    "3" = "";
+    "4" = "";
+    "5" = "";
+    "6" = "";
+    "7" = "";
+    "8" = "";
+    "9" = "";
+    "10" = "";
+  };
+  persistent-workspaces = {
+    "*" = 10;
+  };
+  on-click = "activate";
+};
 
-      "hyprland/workspaces" = {
-        format = "{icon}";
-        format-icons = {
-          "1" = "";
-          "2" = "";
-          "3" = "";
-          "4" = "";
-          "5" = "";
-          "6" = "";
-          "7" = "";
-          "8" = "";
-          "9" = "";
-          "10" = "";
-        };
-        persistent-workspaces = {
-          "*" = 10;
-        };
-        on-click = "activate";
-      };
 
       "hyprland/mode" = {
         format = "<span style=\"italic\">{}</span>";
