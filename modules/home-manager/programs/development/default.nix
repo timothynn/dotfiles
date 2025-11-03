@@ -30,6 +30,7 @@ in
 
       # Java (required for Android development)
       jdk
+      flutter
 
       # Android SDK and tools
       android-tools

@@ -52,6 +52,42 @@ nix develop
 - cargo-watch, cargo-edit, cargo-audit
 - Common system dependencies
 
+### .NET (`dotnet/`)
+.NET development environment for C#, F#, and ASP.NET Core projects.
+
+**Usage:**
+```bash
+cd your-project
+cp -r ~/.dotfiles/templates/devshells/dotnet/* .
+nix develop
+```
+
+**Includes:**
+- .NET 8 SDK
+- OmniSharp (C# language server)
+- Isolated NuGet package cache
+- Local dotnet tools directory
+- Telemetry disabled by default
+
+### .NET MAUI (`dotnet-maui/`)
+.NET MAUI development environment with Android support and workload installation.
+
+**Usage:**
+```bash
+cd your-project
+cp -r ~/.dotfiles/templates/devshells/dotnet-maui/* .
+nix develop
+# Then install workloads:
+dotnet workload install maui-android
+```
+
+**Includes:**
+- .NET 8 SDK in FHS environment (allows workload installation)
+- Android SDK integration
+- Java 17 for Android development
+- Support for Blazor Hybrid apps
+- MAUI workload support
+
 ## Creating Custom Templates
 
 1. Copy an existing template as a base
