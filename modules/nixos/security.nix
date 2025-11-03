@@ -50,6 +50,14 @@
       '';
     };
     
+    # PAM configuration
+    pam.services = {
+      # Enable GNOME Keyring for login
+      login.enableGnomeKeyring = true;
+      sddm.enableGnomeKeyring = true;
+      # Hyprland doesn't have a PAM service, but we enable it for SDDM
+    };
+    
     # Disable coredumps
     pam.loginLimits = [
       { domain = "*"; type = "hard"; item = "core"; value = "0"; }

@@ -101,7 +101,7 @@ Fixed 7 keybinding collisions in Hyprland configuration files.
 |-----|--------|
 | `$mainMod + Q` | Terminal |
 | `$mainMod + E` | File manager |
-| `$mainMod + R` | App launcher (wofi) |
+| `$mainMod + R` | App launcher (rofi) |
 | `$mainMod + A` | Toggle pypr terminal |
 
 ### Utilities

@@ -44,11 +44,11 @@
       font = "JetBrainsMono Nerd Font 11";
       
       # Keys
-      kb-cancel = "Escape,Control+c";
+      kb-cancel = "Escape";
       kb-mode-next = "Shift+Right,Control+Tab";
       kb-mode-previous = "Shift+Left,Control+ISO_Left_Tab";
-      kb-row-up = "Up,Control+k";
-      kb-row-down = "Down,Control+j";
+      kb-row-up = "Up";
+      kb-row-down = "Down";
     };
     
     theme = let 

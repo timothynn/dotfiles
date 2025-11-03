@@ -57,6 +57,7 @@
     hdparm         # Disk info
     iotop          # I/O monitoring
     nethogs        # Network per-process monitoring
+    home-manager
   ];
 
   # Temperature and fan monitoring
