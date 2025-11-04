@@ -9,17 +9,22 @@
     
     # Image viewers
     imv
-    
-    # Audio visualization
-    cava
-    
+    feh
+        
     # Music
     spotify
     
+    
     # Document viewers
     zathura
+
+    # Markdown Viewers
+    glow
+    mdcat
+
   ];
 
   # Audio visualization
   programs.cava.enable = true;
+  
 }

@@ -11,8 +11,8 @@ let
       export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
     fi
     
-    # Launch mailspring with keyring available
-    exec ${pkgs.mailspring}/bin/mailspring "$@"
+    # Launch mailspring with gnome-libsecret password store
+    exec ${pkgs.mailspring}/bin/mailspring --password-store="gnome-libsecret" "$@"
   '';
 in
 {
@@ -29,4 +29,20 @@ in
     slack
     teams-for-linux
   ];
+  
+  # Desktop entry for Mailspring to appear in Rofi
+  home.file.".local/share/applications/mailspring.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=Mailspring
+    GenericName=Email Client
+    Comment=Send and receive email
+    Exec=mailspring %U
+    Icon=mailspring
+    Terminal=false
+    Categories=Network;Email;Office;
+    MimeType=x-scheme-handler/mailto;x-scheme-handler/mailspring;
+    StartupNotify=true
+    StartupWMClass=Mailspring
+  '';
 }

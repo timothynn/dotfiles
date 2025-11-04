@@ -7,15 +7,15 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
     image = pkgs.fetchurl {
-      url = "https://www.pixelstalk.net/wp-content/uploads/2025/05/A-dense-forest-with-towering-evergreens-and-a-glowing-mist-rising-from-the-ground.webp";
-      hash = "sha256-e8RDn46vsP4b/kLAmYXKgBL12soOXJxAqpRvSruqbXA=";
+      url = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=95";
+      hash = "sha256-fciO+0RiQ5LK1GkanZgaZ3Qf6By9492qEc5piUoFQT4=";
     };
     
     polarity = "dark";
 
     cursor = {
-      package = pkgs.catppuccin-cursors.mochaBlue;
-      name = "Catppuccin-Mocha-Blue";
+      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "catppuccin-mocha-dark-cursors";
       size = 18;
     };
 
@@ -55,6 +55,7 @@
       bat.enable = true;
       fzf.enable = true;
       rofi.enable = false;
+      cava.enable = true;
     };
   };
 

@@ -69,6 +69,7 @@
     # Alternative Catppuccin theme
     (catppuccin-sddm.override {
       flavor = "mocha";
+      accent = "blue";  # This sets the accent color in the theme name
       font = "JetbrainsMono Nerd Font";
       fontSize = "11";
       background = "${pkgs.fetchurl {

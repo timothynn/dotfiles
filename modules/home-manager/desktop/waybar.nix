@@ -19,10 +19,11 @@
       margin-right = 8;
       modules-left = ["hyprland/workspaces" "hyprland/mode"];
       modules-center = ["clock"];
-      modules-right = ["pulseaudio" "network" "cpu" "memory" "battery" "tray"];
-"hyprland/workspaces" = {
-  format = "{icon}";
-  format-icons = {
+      modules-right = ["pulseaudio" "network" "cpu" "memory" "temperature" "battery" "uptime" "tray"];
+
+      "hyprland/workspaces" = {
+        format = "{icon}";
+        format-icons = {
     "1" = "";
     "2" = "";
     "3" = "";
@@ -52,54 +53,50 @@
       };
 
       cpu = {
-        format = "  {usage}%";
-        tooltip = false;
+        format = "󰻠 {usage}%";
+        tooltip = true;
         interval = 2;
       };
 
       memory = {
-        format = "  {}%";
-        tooltip = false;
+        format = "󰍛 {percentage}%";
+        tooltip = true;
         interval = 2;
       };
 
+      temperature = {
+        format = "󰔄 {temperatureC}°C";
+        critical-threshold = 80;
+        tooltip = true;
+      };
+
       battery = {
-        states = {
-          warning = 30;
-          critical = 15;
-        };
-        format = "{icon}  {capacity}%";
-        format-charging = "  {capacity}%";
-        format-plugged = "  {capacity}%";
-        format-alt = "{time} {icon}";
-        format-icons = ["" "" "" "" ""];
+        format = "{icon} {capacity}%";
+        format-icons = ["󱃍" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀"];
+        tooltip = true;
       };
 
       network = {
-        format-wifi = "  {signalStrength}%";
-        format-ethernet = "  Connected";
-        format-linked = "  (No IP)";
-        format-disconnected = "  Disconnected";
-        format-alt = "{ifname}: {ipaddr}/{cidr}";
-        tooltip-format = "{essid} via {gwaddr}";
+        format-wifi = "󰖩 {signalStrength}%";
+        format-ethernet = "󰈀";
+        format-disconnected = "󰖪";
+        tooltip = true;
       };
 
       pulseaudio = {
-        format = "{icon}  {volume}%";
-        format-bluetooth = "{icon}  {volume}%";
-        format-bluetooth-muted = " {icon}";
-        format-muted = "";
+        format = "{icon} {volume}%";
+        format-muted = "󰝟 muted";
         format-icons = {
-          headphone = "";
-          hands-free = "";
-          headset = "";
-          phone = "";
-          portable = "";
-          car = "";
-          default = ["" "" ""];
+          default = "󰕾";
         };
         on-click = "pavucontrol";
         scroll-step = 5;
+        tooltip = true;
+      };
+
+      uptime = {
+        format = "󰤷";
+        tooltip = true;
       };
 
       tray = {

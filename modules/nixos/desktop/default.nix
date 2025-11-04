@@ -27,7 +27,7 @@
   };
 
   # Enable GNOME Keyring daemon at system level
-  services.gnome.gnome-keyring.enable = false;
+  services.gnome.gnome-keyring.enable = true;
 
   # Keyring packages
   environment.systemPackages = with pkgs; [

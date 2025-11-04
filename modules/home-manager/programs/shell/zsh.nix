@@ -52,7 +52,7 @@
     # Additional configuration
     initContent = ''
       # Fix Oh-My-Zsh cache directory
-      export ZSH_CACHE_DIR="$HOME/.cache/zsh"
+      export ZSH_CACHE_DIR="$HOME/.cache/oh-my-zsh"
       mkdir -p "$ZSH_CACHE_DIR/completions"
 
       # Custom functions
@@ -69,10 +69,9 @@
       setopt HIST_IGNORE_ALL_DUPS
       setopt HIST_IGNORE_SPACE
 
-      # Fix permissions on first run
-      if [[ ! -w "$HOME/.cache/zsh" ]]; then
-        mkdir -p "$HOME/.cache/zsh/completions"
-        chmod -R 755 "$HOME/.cache/zsh"
+      # Fix permissions on completions directory
+      if [[ -d "$HOME/.cache/oh-my-zsh/completions" ]]; then
+        chmod -R u+w "$HOME/.cache/oh-my-zsh/completions" 2>/dev/null || true
       fi
     '';
 
@@ -87,7 +86,7 @@
 
   # Ensure cache directories exist with correct permissions
   home.activation.fixZshCache = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    mkdir -p $HOME/.cache/zsh/completions
-    chmod -R 755 $HOME/.cache/zsh
+    mkdir -p $HOME/.cache/oh-my-zsh/completions
+    chmod -R u+w $HOME/.cache/oh-my-zsh 2>/dev/null || true
   '';
 }
