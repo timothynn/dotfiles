@@ -16,6 +16,7 @@
     # Database tools
     sqlite
     sqlitebrowser
+    dbeaver-ee  # DBeaver Enterprise Edition
 
     # Graph visualization
     graphviz

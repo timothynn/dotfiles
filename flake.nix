@@ -34,6 +34,12 @@
     let
       inherit (self) outputs;
       system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      
+      # Custom packages overlay - define inline to avoid circular dependency
+      customOverlay = final: prev: {
+        dbeaver-ee = final.callPackage "${self}/pkgs/dbeaver-ee" { };
+      };
       
       # Helper function for generating system configs
       mkSystem = modules: nixpkgs.lib.nixosSystem {
@@ -49,8 +55,8 @@
             home-manager.sharedModules = [
               nixvim.homeModules.nixvim
               stylix.homeModules.stylix
-              # Add NUR overlay for Firefox extensions
-              { nixpkgs.overlays = [ nur.overlays.default ]; }
+              # Add NUR and custom overlays
+              { nixpkgs.overlays = [ nur.overlays.default customOverlay ]; }
             ];
           }
         ];
@@ -60,7 +66,7 @@
       mkHome = modules: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ nur.overlays.default ];  # Add NUR overlay
+          overlays = [ nur.overlays.default customOverlay ];  # Add NUR and custom overlays
           config.allowUnfree = true;
         };
         extraSpecialArgs = { inherit inputs outputs; };
@@ -71,6 +77,11 @@
       };
     in
     {
+      # Custom packages - export for easy testing
+      packages.${system} = {
+        dbeaver-ee = pkgs.callPackage ./pkgs/dbeaver-ee { };
+      };
+
       # NixOS configurations
       nixosConfigurations = {
         # Main desktop configuration
