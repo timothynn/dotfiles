@@ -1,75 +1,97 @@
 { lib
 , stdenv
 , fetchurl
-, makeWrapper
-, jdk17
+, buildFHSEnv
+, makeDesktopItem
+, copyDesktopItems
+, jdk
 , gtk3
 , glib
 , libXtst
 , webkitgtk_4_1
+, libsecret
+, gsettings-desktop-schemas
+, wrapGAppsHook3
 }:
 
-stdenv.mkDerivation rec {
+let
   pname = "dbeaver-ee";
   version = "25.2.0";
 
-  src = fetchurl {
-    url = "https://dbeaver.com/files/${version}/dbeaver-ee-${version}-linux.gtk.x86_64-nojdk.tar.gz";
-    sha256 = "062xaipdxlqabd91jvydv6q46b234a50rpqyxax71jg29fxvlp3k";
+  dbeaver-ee-unwrapped = stdenv.mkDerivation {
+    inherit pname version;
+
+    src = fetchurl {
+      url = "https://dbeaver.com/files/${version}/dbeaver-ee-${version}-linux.gtk.x86_64-nojdk.tar.gz";
+      sha256 = "Sqi8un3FU680vhscTEw+zxdy0DdBKNYDL+vWxbRhnhk=";
+    };
+
+    installPhase = ''
+      runHook preInstall
+
+      mkdir -p $out/opt/dbeaver
+      cp -r . $out/opt/dbeaver
+
+      # Copy icon
+      mkdir -p $out/share/pixmaps
+      cp dbeaver.png $out/share/pixmaps/dbeaver-ee.png
+
+      runHook postInstall
+    '';
+
+    meta = with lib; {
+      homepage = "https://dbeaver.com/";
+      description = "Universal Database Manager and SQL Client - Enterprise Edition";
+      platforms = platforms.linux;
+      license = licenses.unfree;
+    };
   };
 
-  nativeBuildInputs = [ makeWrapper ];
+in buildFHSEnv {
+  name = "dbeaver";
 
-  buildInputs = [
-    jdk17
+  targetPkgs = pkgs: with pkgs; [
+    dbeaver-ee-unwrapped
+    jdk
     gtk3
     glib
     libXtst
     webkitgtk_4_1
+    libsecret
+    gsettings-desktop-schemas
+    
+    # Additional dependencies that might be needed
+    xorg.libX11
+    xorg.libXext
+    xorg.libXi
+    xorg.libXtst
+    xorg.libXrender
+    fontconfig
+    freetype
+    zlib
   ];
 
-  installPhase = ''
-    runHook preInstall
+  runScript = "${dbeaver-ee-unwrapped}/opt/dbeaver/dbeaver";
 
-    mkdir -p $out/opt/dbeaver
-    cp -r . $out/opt/dbeaver
-
-    mkdir -p $out/bin
-    makeWrapper $out/opt/dbeaver/dbeaver $out/bin/dbeaver \
-      --prefix PATH : ${lib.makeBinPath [ jdk17 ]} \
-      --set JAVA_HOME ${jdk17.home} \
-      --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ gtk3 glib libXtst webkitgtk_4_1 ]}
-
-    # Create desktop entry
+  extraInstallCommands = ''
     mkdir -p $out/share/applications
     cat > $out/share/applications/dbeaver-ee.desktop <<EOF
-    [Desktop Entry]
-    Version=1.0
-    Type=Application
-    Name=DBeaver Enterprise
-    Comment=Universal Database Manager and SQL Client
-    Exec=$out/bin/dbeaver
-    Icon=$out/opt/dbeaver/dbeaver.png
-    Terminal=false
-    Categories=Development;Database;
-    Keywords=SQL;MySQL;PostgreSQL;Oracle;Database;
-    StartupWMClass=DBeaver
-    EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=DBeaver Enterprise
+Comment=Universal Database Manager and SQL Client
+Exec=$out/bin/dbeaver
+Icon=${dbeaver-ee-unwrapped}/share/pixmaps/dbeaver-ee.png
+Terminal=false
+Categories=Development;Database;
+Keywords=SQL;MySQL;PostgreSQL;Oracle;Database;
+StartupWMClass=DBeaver
+EOF
 
-    # Copy icon if it exists
-    if [ -f dbeaver.png ]; then
-      mkdir -p $out/share/pixmaps
-      cp dbeaver.png $out/share/pixmaps/dbeaver-ee.png
-    fi
-
-    runHook postInstall
+    mkdir -p $out/share/pixmaps
+    ln -s ${dbeaver-ee-unwrapped}/share/pixmaps/dbeaver-ee.png $out/share/pixmaps/
   '';
 
-  meta = with lib; {
-    homepage = "https://dbeaver.com/";
-    description = "Universal Database Manager and SQL Client - Enterprise Edition";
-    platforms = platforms.linux;
-    license = licenses.unfree;
-    maintainers = [ ];
-  };
+  meta = dbeaver-ee-unwrapped.meta;
 }

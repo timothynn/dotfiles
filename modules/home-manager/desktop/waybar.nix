@@ -80,6 +80,9 @@
         format-wifi = "󰖩 {signalStrength}%";
         format-ethernet = "󰈀";
         format-disconnected = "󰖪";
+        tooltip-format-wifi = "{essid} ({signalStrength}%)";
+        tooltip-format-ethernet = "{ifname}: {ipaddr}/{cidr}";
+        tooltip-format-disconnected = "Disconnected";
         tooltip = true;
       };
 

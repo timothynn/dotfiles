@@ -1,4 +1,4 @@
-.PHONY: help setup check check-fast build-system build-home switch-system switch-home update update-system clean
+.PHONY: help setup check check-fast check-updates build-system build-home switch-system switch-home update update-system clean
 
 # Default target
 help:
@@ -6,6 +6,7 @@ help:
 	@echo "  setup         - Initial setup (check syntax, validate flake)"
 	@echo "  check         - Comprehensive configuration validity check"
 	@echo "  check-fast    - Quick syntax check only"
+	@echo "  check-updates - Check for available updates without installing"
 	@echo "  build-system  - Build NixOS system (dry run)"
 	@echo "  build-home    - Build Home Manager (dry run)" 
 	@echo "  switch-system - Switch to new NixOS configuration"
@@ -46,6 +47,21 @@ check-fast:
 		echo "❌ Flake syntax error"; \
 		exit 1; \
 	fi
+
+# Check for available updates
+check-updates:
+	@echo "🔍 Checking for updates..."
+	@echo ""
+	@echo "📦 Current flake inputs:"
+	@nix flake metadata --json | jq -r '.locks.nodes | to_entries[] | select(.value.locked.type != null) | "\(.key): \(.value.locked.rev // .value.locked.narHash | .[0:12])"' 2>/dev/null || nix flake metadata
+	@echo ""
+	@echo "🔢 Checking potential system updates..."
+	@sudo nixos-rebuild dry-build --flake .#nixos 2>&1 | grep "will be built\|will be fetched" | head -3 || echo "  ℹ️  No major system updates detected"
+	@echo ""
+	@echo "🏠 Checking potential Home Manager updates..."
+	@home-manager build --flake .#tim@nixos --dry-run 2>&1 | grep "will be built\|will be fetched" | head -3 || echo "  ℹ️  No major home updates detected"
+	@echo ""
+	@echo "✅ Check complete. Run 'make update-system' to apply updates."
 
 # Build configurations (dry run)
 build-system:

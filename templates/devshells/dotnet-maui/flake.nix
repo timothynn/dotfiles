@@ -20,7 +20,7 @@
             
             # Android SDK components
             android-tools
-            jdk17
+            jdk
             
             # Required libraries for Android
             glibc
@@ -60,7 +60,7 @@
             export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
             
             # Java for Android
-            export JAVA_HOME="${pkgs.jdk17}"
+            export JAVA_HOME="${pkgs.jdk}"
             
             # Allow workload installation in user directory
             export DOTNET_CLI_HOME="$HOME/.dotnet"

@@ -7,8 +7,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
     image = pkgs.fetchurl {
-      url = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=95";
-      hash = "sha256-fciO+0RiQ5LK1GkanZgaZ3Qf6By9492qEc5piUoFQT4=";
+      url = "https://raw.githubusercontent.com/orangci/walls-catppuccin-mocha/master/voxel-city.jpg";
+      hash = "sha256-KChwMrsiX2XkPcq/Gsav7HDTFvaQ83kPpitONM64hL0=";
     };
     
     polarity = "dark";

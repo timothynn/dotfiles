@@ -6,7 +6,7 @@ plugins = [
   "toggle_dpms",
   "magnify",
   "expose",
-  "shift_monitors",
+  "shift_monjdkitors",
   "workspaces_follow_focus",
 ]
 
