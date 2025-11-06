@@ -28,9 +28,15 @@
     
     # NUR - Nix User Repository (for Firefox extensions)
     nur.url = "github:nix-community/NUR";
+    
+    # Spicetify
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, stylix, nixvim, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, stylix, nixvim, nur, spicetify-nix, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -39,6 +45,7 @@
       # Custom packages overlay - define inline to avoid circular dependency
       customOverlay = final: prev: {
         dbeaver-ee = final.callPackage "${self}/pkgs/dbeaver-ee" { };
+        rofi-themes-adi1090x = final.callPackage "${self}/pkgs/rofi-themes-adi1090x" { };
       };
       
       # Helper function for generating system configs
@@ -55,6 +62,7 @@
             home-manager.sharedModules = [
               nixvim.homeModules.nixvim
               stylix.homeModules.stylix
+              spicetify-nix.homeManagerModules.default
               # Add NUR and custom overlays
               { nixpkgs.overlays = [ nur.overlays.default customOverlay ]; }
             ];
@@ -73,6 +81,7 @@
         modules = modules ++ [
           nixvim.homeModules.nixvim
           stylix.homeModules.stylix
+          spicetify-nix.homeManagerModules.default
         ];
       };
     in
@@ -80,6 +89,7 @@
       # Custom packages - export for easy testing
       packages.${system} = {
         dbeaver-ee = pkgs.callPackage ./pkgs/dbeaver-ee { };
+        rofi-themes-adi1090x = pkgs.callPackage ./pkgs/rofi-themes-adi1090x { };
       };
 
       # NixOS configurations

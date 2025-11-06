@@ -4,6 +4,7 @@
 
   imports = [
     ./backup.nix
+    ./hypridle.nix
   ];
   # Home manager services
   services = {

@@ -177,11 +177,14 @@
     };
   };
   
-  # Additional rofi utilities
+  # Additional rofi utilities and themes
   home.packages = with pkgs; [
-    # Rofi scripts
-    rofimoji        # Better emoji picker
+    rofimoji              # Better emoji picker
+    rofi-themes-adi1090x  # adi1090x theme collection
   ];
+  
+  # Copy Catppuccin color scheme
+  home.file.".config/rofi/catppuccin-mocha.rasi".source = ../../../../configs/rofi/catppuccin-mocha.rasi;
   
   # Rofi keybindings in Hyprland config
   # Add to your hyprland.conf:

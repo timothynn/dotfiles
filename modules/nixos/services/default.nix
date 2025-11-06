@@ -3,6 +3,7 @@
 {
   imports = [
     ./database.nix
+    ./opensnitch.nix
   ];
 
   # Essential services

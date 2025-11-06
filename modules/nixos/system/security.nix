@@ -49,9 +49,10 @@
 
   # Security enhancements
   security = {
-    # Sudo timeout
+    # Sudo configuration
     sudo.extraConfig = ''
       Defaults timestamp_timeout=30
+      Defaults insults
     '';
     
     # Polkit already enabled in desktop module

@@ -10,5 +10,8 @@
     ./audio-video.nix
     ./hyprland-extras.nix
     ./misc.nix
+    ./btop.nix
+    ./zellij.nix
+    ./hyprlock.nix
   ];
 }
