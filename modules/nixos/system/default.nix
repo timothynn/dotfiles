@@ -1,6 +1,13 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./security.nix
+    ./maintenance.nix
+    ./auto-gc.nix
+    ./laptop.nix
+  ];
+
   # System-wide configuration that doesn't fit elsewhere
   
   # Performance optimizations

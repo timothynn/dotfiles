@@ -1,4 +1,4 @@
-{ inputs, outputs, config, pkgs, ... }:
+{ inputs, outputs, config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -19,6 +19,9 @@
     BROWSER = "firefox";
     TERMINAL = "kitty";
   };
+
+  # Allow unfree packages since useGlobalPkgs is disabled
+  nixpkgs.config.allowUnfree = true;
 
   # Enable home manager
   programs.home-manager.enable = true;

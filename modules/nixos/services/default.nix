@@ -3,6 +3,7 @@
 {
   imports = [
     ./database.nix
+    ./opensnitch.nix
   ];
 
   # Essential services
@@ -13,5 +14,8 @@
     
     # Thumbnails
     tumbler.enable = true;
+    
+    # Tailscale 
+    tailscale.enable = true;
   };
 }

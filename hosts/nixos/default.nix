@@ -54,9 +54,12 @@
     experimental-features = [ "nix-command" "flakes" ];
     trusted-users = [ "root" "tim" ];
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  
+  # Allow unfree packages (needed for Android SDK, VS Code, etc.)
+  nixpkgs.config = {
+    allowUnfree = true;
+    android_sdk.accept_license = true;  # Accept Android SDK license
+  };
 
   # System state version
   system.stateVersion = "25.05";

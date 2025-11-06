@@ -7,15 +7,15 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
     image = pkgs.fetchurl {
-      url = "https://www.pixelstalk.net/wp-content/uploads/2025/05/A-dense-forest-with-towering-evergreens-and-a-glowing-mist-rising-from-the-ground.webp";
-      hash = "sha256-e8RDn46vsP4b/kLAmYXKgBL12soOXJxAqpRvSruqbXA=";
+      url = "https://raw.githubusercontent.com/orangci/walls-catppuccin-mocha/master/voxel-city.jpg";
+      hash = "sha256-KChwMrsiX2XkPcq/Gsav7HDTFvaQ83kPpitONM64hL0=";
     };
     
     polarity = "dark";
 
     cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
+      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "catppuccin-mocha-dark-cursors";
       size = 18;
     };
 
@@ -36,15 +36,15 @@
       };
       
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
       
       sizes = {
-        applications = 11;
-        desktop = 11;
-        popups = 11;
-        terminal = 11;
+        applications = 10;
+        desktop = 10;
+        popups = 10;
+        terminal = 9;
       };
     };
 
@@ -54,6 +54,8 @@
       btop.enable = true;
       bat.enable = true;
       fzf.enable = true;
+      rofi.enable = false;
+      cava.enable = true;
     };
   };
 
@@ -84,7 +86,7 @@
     
     # Theme tools
     libsForQt5.qt5ct
-    qt6ct
+    qt6Packages.qt6ct
     plasma5Packages.qtstyleplugin-kvantum
   ];
 }

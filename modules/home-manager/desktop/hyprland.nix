@@ -4,7 +4,8 @@
   # Hyprland configuration
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    # Using nixpkgs version instead of flake input for faster updates
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     xwayland.enable = true;
     
     # Source the existing config file

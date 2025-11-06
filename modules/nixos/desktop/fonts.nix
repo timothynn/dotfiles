@@ -6,7 +6,7 @@
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       font-awesome
       source-han-sans
       source-han-serif

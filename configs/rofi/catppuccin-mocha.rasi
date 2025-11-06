@@ -1,0 +1,30 @@
+/**
+ * Catppuccin Mocha color scheme for Rofi
+ */
+
+* {
+    /* Catppuccin Mocha Colors */
+    bg0:    #1e1e2eff;
+    bg1:    #181825ff;
+    bg2:    #313244ff;
+    bg3:    #45475aff;
+    
+    fg0:    #cdd6f4ff;
+    fg1:    #bac2deff;
+    fg2:    #a6adc8ff;
+    
+    red:     #f38ba8ff;
+    green:   #a6e3a1ff;
+    yellow:  #f9e2afff;
+    blue:    #89b4faff;
+    magenta: #cba6f7ff;
+    cyan:    #94e2d5ff;
+    
+    accent: @blue;
+    urgent: @red;
+    on: @green;
+    off: @red;
+    
+    background-color: transparent;
+    text-color: @fg0;
+}

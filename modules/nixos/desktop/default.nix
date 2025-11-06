@@ -26,6 +26,16 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
+  # Enable GNOME Keyring daemon at system level
+  services.gnome.gnome-keyring.enable = true;
+
+  # Keyring packages
+  environment.systemPackages = with pkgs; [
+    gnome-keyring
+    libsecret
+    seahorse  # GUI for managing keyring
+  ];
+
   # Environment variables for wayland
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";

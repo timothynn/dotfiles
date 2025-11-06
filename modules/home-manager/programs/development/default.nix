@@ -1,46 +1,56 @@
 { config, pkgs, ... }:
 
+let
+  packages = import ../../../common/packages.nix { inherit pkgs; };
+in
 {
   imports = [
     ./git.nix
   ];
 
   # Development tools
-  home.packages = with pkgs; [
-    # Version control
-    gh
-    lazygit
-    
-    # Development environments
-    devenv
-    direnv
-    
-    # Languages
-    (python3.withPackages (ps: with ps; [ tkinter ]))
-    nodejs
-    
-    # Tools
-    postman
-    lazydocker
-    
-    # AI tools
-    github-copilot-cli
-    ollama
-    gollama
-    jan
-    lmstudio
-    
-    # Terminals
-    warp-terminal
+  home.packages =
+    packages.vcs
+    ++ packages.devUtils
+    ++ (with pkgs; [
+      # Languages
+      (python3.withPackages (
+        ps: with ps; [
+          tkinter
+          jupyter
+          notebook
+          jupyterlab
+        ]
+      ))
+      nodejs
 
-    # Database
-    dolt
+      # .NET SDK
+      dotnet-sdk
+      dotnet-aspnetcore
 
-    # Office
-    wpsoffice
+      # Java (required for Android development)
+      jdk
+      flutter
 
-    vivaldi
-  ];
+      # Android SDK and tools
+      android-tools
+      android-studio
+
+      # Tools
+      postman
+      lazydocker
+
+      # General development utilities (not in packages.nix yet)
+      unzip
+      which
+      file
+
+      # For emulation
+      qemu
+
+      # Office
+      brave
+    ]);
 
   # Enable direnv
   programs.direnv = {

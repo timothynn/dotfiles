@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+
+  imports = [
+    ./backup.nix
+    ./hypridle.nix
+  ];
   # Home manager services
   services = {
     # Keyring
@@ -11,5 +16,14 @@
     
     # Auto mounting
     udiskie.enable = true;
+    
+    # Notification daemon
+    mako = {
+      enable = true;
+      settings = {
+        default-timeout = 5000;
+        ignore-timeout = true;
+      };
+    };
   };
 }

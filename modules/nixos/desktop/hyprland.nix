@@ -1,10 +1,11 @@
 { inputs, config, pkgs, ... }:
 
 {
-  # Enable Hyprland
+  # Enable Hyprland from nixpkgs (faster updates)
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    # Using nixpkgs version instead of flake input for faster updates
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
   };

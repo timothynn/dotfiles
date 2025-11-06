@@ -8,9 +8,14 @@
     ./browser
     ./media
     ./development
+    ./data-science
+    ./backend
     ./productivity
     ./communication
     ./utilities
     ./keybind-viewer.nix
+    ./network
+    ./network-gui
+    ./rofi
   ];
 }

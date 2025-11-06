@@ -25,12 +25,28 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    # NUR - Nix User Repository (for Firefox extensions)
+    nur.url = "github:nix-community/NUR";
+    
+    # Spicetify
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, stylix, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, stylix, nixvim, nur, spicetify-nix, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      
+      # Custom packages overlay - define inline to avoid circular dependency
+      customOverlay = final: prev: {
+        dbeaver-ee = final.callPackage "${self}/pkgs/dbeaver-ee" { };
+        rofi-themes-adi1090x = final.callPackage "${self}/pkgs/rofi-themes-adi1090x" { };
+      };
       
       # Helper function for generating system configs
       mkSystem = modules: nixpkgs.lib.nixosSystem {
@@ -39,13 +55,16 @@
         modules = modules ++ [
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
+            home-manager.useGlobalPkgs = false;  # Temporarily disable to fix nixpkgs config conflict
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = { inherit inputs outputs; };
             home-manager.sharedModules = [
               nixvim.homeModules.nixvim
               stylix.homeModules.stylix
+              spicetify-nix.homeManagerModules.default
+              # Add NUR and custom overlays
+              { nixpkgs.overlays = [ nur.overlays.default customOverlay ]; }
             ];
           }
         ];
@@ -53,12 +72,26 @@
       
       # Helper function for generating home configs
       mkHome = modules: home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ nur.overlays.default customOverlay ];  # Add NUR and custom overlays
+          config.allowUnfree = true;
+        };
         extraSpecialArgs = { inherit inputs outputs; };
-        modules = modules;
+        modules = modules ++ [
+          nixvim.homeModules.nixvim
+          stylix.homeModules.stylix
+          spicetify-nix.homeManagerModules.default
+        ];
       };
     in
     {
+      # Custom packages - export for easy testing
+      packages.${system} = {
+        dbeaver-ee = pkgs.callPackage ./pkgs/dbeaver-ee { };
+        rofi-themes-adi1090x = pkgs.callPackage ./pkgs/rofi-themes-adi1090x { };
+      };
+
       # NixOS configurations
       nixosConfigurations = {
         # Main desktop configuration
@@ -73,8 +106,6 @@
       homeConfigurations = {
         "tim@nixos" = mkHome [
           ./home/tim
-          stylix.homeModules.stylix
-          nixvim.homeModules.nixvim
         ];
       };
 
@@ -82,6 +113,7 @@
       devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
         buildInputs = with nixpkgs.legacyPackages.${system}; [
           git
+          nixfmt
         ];
       };
     };

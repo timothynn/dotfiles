@@ -2,16 +2,25 @@
     border: none;
     border-radius: 0;
     font-family: "JetbrainsMono Nerd Font", "Font Awesome 6 Free";
-    font-size: 14px;
+    font-size: 12px;
     min-height: 0;
 }
 
-window#waybar {
+/* window#waybar {
     background: rgba(30, 30, 46, 0.9);
     color: #cdd6f4;
     transition-property: background-color;
     transition-duration: 0.5s;
     border-radius: 6px;
+} */
+
+window#waybar {
+    background: rgba(30, 30, 46, 0.85);
+    color: #cdd6f4;
+    border-radius: 6px;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 window#waybar.hidden {
@@ -22,7 +31,7 @@ window#waybar.hidden {
     background: transparent;
     margin: 2px 4px 2px 2px;
     padding: 0 5px;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 #workspaces button {
@@ -76,74 +85,50 @@ window#waybar.hidden {
 }
 
 #cpu,
-#memory {
-    background: #a6e3a1;
-    color: #1e1e2e;
-    padding: 0 10px;
-    margin: 2px 2px;
-    border-radius: 6px;
+#memory,
+#temperature,
+#battery,
+#uptime,
+#network,
+#pulseaudio,
+#tray {
+    padding: 5px 10px;
+    margin: 3px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
     font-weight: bold;
-}
-
-#memory {
-    background: #f9e2af;
-}
-
-#battery {
-    background: #fab387;
-    color: #1e1e2e;
-    padding: 0 10px;
-    margin: 2px 2px;
-    border-radius: 6px;
-    font-weight: bold;
-}
-
-#battery.charging {
-    background: #a6e3a1;
-}
-
-#battery.warning:not(.charging) {
-    background: #f9e2af;
-    animation: blink 1s linear infinite alternate;
-}
-
-#battery.critical:not(.charging) {
-    background: #f38ba8;
-    animation: blink 0.5s linear infinite alternate;
-}
-
-#network {
-    background: #cba6f7;
-    color: #1e1e2e;
-    padding: 0 10px;
-    margin: 2px 2px;
-    border-radius: 6px;
-    font-weight: bold;
-}
-
-#network.disconnected {
-    background: #f38ba8;
 }
 
 #pulseaudio {
-    background: #f5c2e7;
-    color: #1e1e2e;
-    padding: 0 10px;
-    margin: 2px 2px;
-    border-radius: 6px;
-    font-weight: bold;
+    color: #8aadf4;
 }
 
-#pulseaudio.muted {
-    background: #6c7086;
-    color: #cdd6f4;
+#network {
+    color: #a6da95;
+}
+
+#cpu {
+    color: #eed49f;
+}
+
+#memory {
+    color: #f5a97f;
+}
+
+#temperature {
+    color: #a6da95;
+}
+
+#battery {
+    color: #a6da95;
+}
+
+#uptime {
+    color: #8aadf4;
 }
 
 #tray {
-    background: #45475a;
-    padding: 0 10px;
-    margin: 2px 2px 2px 4px;
-    border-radius: 6px;
+    color: #cdd6f4;
 }
 
 #tray > .passive {

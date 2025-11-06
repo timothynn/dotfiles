@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  packages = import ../../../common/packages.nix { inherit pkgs; };
+in
 {
   # Shell utilities
   programs = {
@@ -39,22 +42,11 @@
 
     # Alternative grep
     ripgrep.enable = true;
-    
+
     # Alternative find
     fd.enable = true;
   };
 
-  # Additional utilities as packages
-  home.packages = with pkgs; [
-    tldr        # Better man pages
-    bottom      # Better top
-    du-dust     # Better du
-    procs       # Better ps
-    choose      # Better cut/awk
-    sd          # Better sed
-    hyperfine   # Benchmarking tool
-    tokei       # Code statistics
-    gitui       # Git TUI
-    lazygit     # Another Git TUI
-  ];
+  # Use centralized package lists
+  home.packages = packages.monitoring ++ packages.shellUtils;
 }

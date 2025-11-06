@@ -6,5 +6,6 @@
     ./programs
     ./services
     ./system
+    ./network.nix
   ];
 }
